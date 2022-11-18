@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+    form(action="#" method="post") 
+        .mb-3
+            label.form-label(for="input-id") 아이디
+            input#input-id.form-control(type="text" name="id" required)
+
+        .mb-3 
+            label.form-label(for="input-password") 비밀번호
+            input#input-password.form-control(type="password" name="password" required)
+
+        .mb-3.form-check
+            input#check-remember.form-check-input(type="checkbox" name="remember")
+            label.form-check-label(for="check-remember") 자동 로그인
+
+        button.btn.btn-primary(type="submit") 로그인

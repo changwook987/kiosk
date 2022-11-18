@@ -1,0 +1,67 @@
+doctype html
+html
+    head
+        title= title
+        link(rel="stylesheet" href="/fonts/pretendard/pretendard.css")
+        link(rel="stylesheet" href="/fonts/pretendard/pretendard-subset.css")
+        link(rel='stylesheet' href="/stylesheets/style.css")
+        link(rel="stylesheet" href="/css/bootstrap.min.css")
+        script(src="/js/bootstrap.bundle.min.js") 
+    body
+        nav.navbar.navbar-expand-lg.bg-light 
+            .container-fluid 
+                a.navbar-brand(href="/")
+                    b home
+                #collapseContent.collapse.navbar-collapse
+                    ul.navbar-nav.me-auto.mb-2.mb-lg-0
+                        li.nav-item
+                            a.nav-link.active(href="/") 물건 담기 
+
+            .d-inline-flex.me-2
+                a.text-decoration-none.p-2(href="/user/login") login
+                a.text-decoration-none.p-2(href="/user/register") register
+
+        .container.mt-5 
+            h1= title
+            if desc
+                .mb-3.form-text= desc 
+            block content
+
+        footer.bd-footer.py-4.py-md-5.mt-5.bg-light
+            .container.py-4.py-md-5.px-4.px-md-3
+                .row 
+                    .col.mb-3
+                        a.d-inline-flex.align-items-center.mb-2.link-dark.text-decoration-none(href="/" aria-label="Bootstrap") 
+                            span.fs-5 키오스크
+                        ul.list-unstyled.small.text-muted
+                            li.mb-2
+                                | 이 페이지의 작성자는 
+                                a.text-decoration-none(href="https://github.com/changwook987" target="_blank") Gbunny
+                                |  입니다
+                            li.mb-2 
+                                | 이 페이지는 
+                                a.text-decoration-none(href="http://www.dgsw.hs.kr/" target="_blank") 대구 소프트웨어 마이스터 고등학교
+                                |  2학년 2학기 웹 프로그래밍 수행평가로 작성되었습니다
+                            li.mb-2 
+                                | 페이지의 모든 코드는 
+                                a.text-decoration-none(href="https://github.com/changwook987/kiosk" target="_blank") 여기
+                                | 에서 볼 수 있습니다
+                    .col.offset-lg-1.mb-3
+                        h5 바로가기
+                        ul.list-unstyled
+                            li.mb-2
+                                a.text-decoration-none(href="/") 유저 페이지
+                            li.mb-2
+                                a.text-decoration-none(href="admin") 관리자 페이지
+                    .col.mb-3
+                        h5 출처
+                        ul.list-unstyled 
+                            li.mb-2 
+                                a.text-decoration-none(href="https://getbootstrap.com/" target="_blank") Bootstrap 
+                            li.mb-2
+                                a.text-decoration-none(href="https://cactus.tistory.com/306" target="_blank") Pretendard
+                    .col.mb-3
+                        h5 Features
+                        ul.list-unstyled 
+                            li.mb-2 
+                                a.text-decoration-none(href="features") 기능 소개
