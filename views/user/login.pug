@@ -1,7 +1,9 @@
 extends ../layout
-
+block libs
+    script(src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous") 
+    script(src="/javascripts/login.js") 
 block content
-    form(action="#" method="post") 
+    form(onsubmit="return false")
         .mb-3
             label.form-label(for="input-id") 아이디
             input#input-id.form-control(type="text" name="id" required)
@@ -14,4 +16,4 @@ block content
             input#check-remember.form-check-input(type="checkbox" name="remember")
             label.form-check-label(for="check-remember") 자동 로그인
 
-        button.btn.btn-primary(type="submit") 로그인
+        button#submit.btn.btn-primary(type="submit") 로그인

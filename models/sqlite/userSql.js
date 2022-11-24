@@ -34,6 +34,10 @@ module.exports.selectUserByNickname = (nickname) => {
     return `SELECT * FROM user WHERE user_nickname = "${nickname}"`
 }
 
+module.exports.deleteUser = () => {
+    return `DELETE FROM user`
+}
+
 // Delete User By User ID
 module.exports.deleteUserById = (id) => {
     return `DELETE FROM user WHERE user_id = ${id}`

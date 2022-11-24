@@ -1,4 +1,13 @@
 extends layout
 
-block content 
-    | 나는 능이버섯이에요
+block content
+    .d-flex.flex-wrap.justify-content-evenly
+        for item in items
+            .card(style="width: 18rem").mb-4
+                img.card-img-top(src=item.item_image_path alt="...")
+
+                .card-header= item.item_name
+
+                ul.list-group.list-group-flush 
+                    li.list-group-item= '가격: ' + item.item_prise
+                    li.list-group-item= '재고: ' + item.item_amount

@@ -4,63 +4,67 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('kiosk:server');
-var http = require('http');
+var app = require('../app')
+var debug = require('debug')('kiosk:server')
+var http = require('http')
 
-var userDb = require('../models/sqlite/user/userDB');
-var itemDb = require('../models/sqlite/item/itemDB');
+var Database = require('../models/sqlite/sqlite-db')
 
-var userSql = require('../models/sqlite/user/userSql');
-var itemSql = require('../models/sqlite/item/itemSql');
+var userSql = require('../models/sqlite/userSql')
+var itemSql = require('../models/sqlite/itemSql')
 
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+var port = normalizePort(process.env.PORT || '3000')
+app.set('port', port)
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = http.createServer(app)
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+server.listen(port)
+server.on('error', onError)
+server.on('listening', onListening)
 
 // Database Initalize
-userDb.executeUpdate(userSql.dropTable());
-itemDb.executeUpdate(itemSql.dropTable());
 
-userDb.executeUpdate(userSql.createTable());
-itemDb.executeUpdate(itemSql.createTable());
+// console.log('drop user db')
+// Database.executeUpdate(userSql.dropTable())
+// console.log('drop item db')
+// Database.executeUpdate(itemSql.dropTable())
+
+console.log('init user db')
+Database.executeUpdate(userSql.createTable())
+console.log('init item db')
+Database.executeUpdate(itemSql.createTable())
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  var port = parseInt(val, 10)
 
   if (isNaN(port)) {
     // named pipe
-    return val;
+    return val
   }
 
   if (port >= 0) {
     // port number
-    return port;
+    return port
   }
 
-  return false;
+  return false
 }
 
 /**
@@ -69,25 +73,25 @@ function normalizePort(val) {
 
 function onError(error) {
   if (error.syscall !== 'listen') {
-    throw error;
+    throw error
   }
 
   var bind = typeof port === 'string'
     ? 'Pipe ' + port
-    : 'Port ' + port;
+    : 'Port ' + port
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
+      console.error(bind + ' requires elevated privileges')
+      process.exit(1)
+      break
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
+      console.error(bind + ' is already in use')
+      process.exit(1)
+      break
     default:
-      throw error;
+      throw error
   }
 }
 
@@ -96,9 +100,9 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
+  var addr = server.address()
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+    : 'port ' + addr.port
+  debug('Listening on ' + bind)
 }

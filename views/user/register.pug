@@ -1,7 +1,11 @@
 extends ../layout
 
+block libs
+    script(src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous") 
+    script(src="/javascripts/register.js") 
+
 block content
-    form(action="#" method="post") 
+    form(onsubmit="return false")
         .mb-3
             label.form-label(for="input-id") 아이디*
             input#input-id.form-control(type="text" name="id" required)
@@ -17,4 +21,4 @@ block content
             input#input-reason.form-control(type="text" name="reason")
             .form-text 이 서비스에 가입하게된 이유가 있다면 적어주세요!
 
-        button.mb-3.btn.btn-primary(type="submit") 회원가입
+        button.mb-3.btn.btn-primary(type="submit")#submit 회원가입

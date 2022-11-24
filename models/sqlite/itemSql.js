@@ -2,6 +2,7 @@
 module.exports.createTable = () => {
     return `CREATE TABLE IF NOT EXISTS item (
                 item_id         INTEGER  PRIMARY KEY AUTOINCREMENT,
+                item_name       TEXT     NOT NULL,
                 item_image_path TEXT     NOT NULL,
                 item_prise      INTEGER  NOT NULL,
                 item_amount     INTEGER  NOT NULL
@@ -27,4 +28,15 @@ module.exports.selectItem = () => {
 // Select Item By Item ID
 module.exports.selectItemById = (id) => {
     return `SELECT * FROM item WHERE id = ${id}`
+}
+
+//
+module.exports.updateItem = (id, item) => {
+    return `UPDATE item SET
+                item_name       = ${item.item_name},
+                item_image_path = ${item.item_image_path},
+                item_amount     = ${item.item_amount},
+                item_prise      = ${item.item_prise}
+            WHERE
+                item_id         = ${id}`
 }
