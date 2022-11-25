@@ -9,7 +9,7 @@ const nicknameTest = (nickname) => {
     }
 }
 const passwordTest = (password) => {
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/.test(password)) {
         return { err: '비밀번호가 올바르지 않습니다' }
     }
     return {}
@@ -19,6 +19,7 @@ $(() => {
     $('#submit').on('click', () => {
         const nickname = $('#input-id').val()
         const password = $('#input-password').val()
+        const isAdmin = $('#check-admin').is(':checked')
         testRes = nicknameTest(nickname)
         if (testRes.err) {
             $('#input-id').focus()
@@ -31,12 +32,15 @@ $(() => {
             alert(testRes.err)
             return
         }
+        let url = '/api/user/register'
+        if (isAdmin) url += '/admin'
         $.ajax({
-            url: '/api/user',
+            url: url,
             type: 'post',
             data: { id: nickname, password: password }
         }).done((data) => {
-            location.href('/user/login')
+            alert('회원가입되었습니다')
+            location.href = '/user/login'
         }).fail((xhr, status, error) => {
             alert(error)
         })

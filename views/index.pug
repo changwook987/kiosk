@@ -11,3 +11,27 @@ block content
                 ul.list-group.list-group-flush 
                     li.list-group-item= '가격: ' + item.item_prise
                     li.list-group-item= '재고: ' + item.item_amount
+                    li.list-group-item.list-group-item-action(onclick=`addBag(${item.item_id})`) 장바구니에 담기
+    script.
+        const getCookie = (cname) => {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        const addBag = (id) => {
+            var bag = getCookie('bag')
+            let arr = []
+            if(bag != '') arr = JSON.parse(bag)
+            console.log(arr)
+            if(!arr.includes(id))arr.push(id)
+            document.cookie = "bag=" + JSON.stringify(arr)
+        }

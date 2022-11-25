@@ -15,9 +15,9 @@ module.exports.dropTable = () => {
 }
 
 // Insert Item
-module.exports.insertItem = (imagePath, prise, amount) => {
-    return `INSERT INTO item (item_image_path, item_prise, item_amount)
-                        values ("${imagePath}", ${prise}, ${amount})`
+module.exports.insertItem = (name, imagePath, prise, amount) => {
+    return `INSERT INTO item (item_name, item_image_path, item_prise, item_amount)
+                        values ("${name}", "${imagePath}", ${prise}, ${amount})`
 }
 
 // Select All Items
@@ -27,7 +27,11 @@ module.exports.selectItem = () => {
 
 // Select Item By Item ID
 module.exports.selectItemById = (id) => {
-    return `SELECT * FROM item WHERE id = ${id}`
+    return `SELECT * FROM item WHERE item_id = ${id}`
+}
+
+module.exports.selectItemsByIds = (idList) => {
+    return 'SELECT * FROM item WHERE ' + idList.map((id) => `item_id = ${id}`).join(' or ')
 }
 
 //

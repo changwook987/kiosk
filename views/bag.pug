@@ -1,0 +1,16 @@
+extends layout 
+
+block libs 
+    script(src="javascripts/bag.js") 
+block content 
+    form#form(onsubmit="return false")
+        ul.list-group 
+            for item in items
+                li.list-group-item
+                    .row.align-items-center
+                        input(type="hidden" name=`id_${item.item_id}` value=item.item_id)
+                        img.col-2(src=item.item_image_path, alt="")
+                        span.col-2.h2= item.item_name
+                        input#input-number.col-1(type="number" name=`amount_${item.item_id}` min=0 max=item.item_amount value=item.item_amount)
+            li.list-group-item
+                button#submit.btn.btn-primary 구매

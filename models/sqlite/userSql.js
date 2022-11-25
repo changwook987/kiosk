@@ -1,10 +1,10 @@
 // Create User Table
 module.exports.createTable = () => {
     return `CREATE TABLE IF NOT EXISTS user (
-                user_id            INTEGER     PRIMARY KEY AUTOINCREMENT,
-                user_nickname      VARCHAR(15) NOT NULL UNIQUE,
-                user_password      CHAR(128)   NOT NULL,
-                user_permition_lvl INTEGER     DEFAULT 0
+                user_id            INTEGER      PRIMARY KEY AUTOINCREMENT,
+                user_nickname      VARCHAR(15)  NOT NULL UNIQUE,
+                user_password      VARCHAR(100) NOT NULL,
+                user_permition_lvl INTEGER      DEFAULT 0
             )`
 }
 
@@ -17,6 +17,12 @@ module.exports.dropTable = () => {
 module.exports.insertUser = (nickname, password) => {
     return `INSERT INTO user (user_nickname, user_password)
                         values ("${nickname}", "${password}")`
+}
+
+// Insert User as Admin
+module.exports.insertAdmin = (nickname, password) => {
+    return `INSERT INTO user (user_nickname, user_password, user_permition_lvl)
+                        values ("${nickname}", "${password}", 9)`
 }
 
 // Select All Users

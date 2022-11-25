@@ -7,10 +7,13 @@ module.exports.getConnection = () => {
     return db
 }
 
-module.exports.executeUpdate = (sql) => {
+module.exports.executeUpdate = (sql, callback) => {
     const db = this.getConnection()
     db.serialize()
-    db.each(sql)
+    db.each(sql, (err, row) => {
+        console.log(err)
+        if (callback) callback(err, row)
+    })
     db.close()
 }
 

@@ -1,0 +1,25 @@
+extends ../layout
+
+block libs
+    script(src="/javascripts/add-item.js") 
+
+block content
+    .d-flex.justify-content-center
+        form#form.card(onsubmit="return false" style="width: 30rem")
+            label(for="input-image") 
+                img#preview.card-img-top(src="placeholder.jpg" alt="")
+            ul.list-group.list-group-flush 
+                li.input-group
+                    span.input-group-text.w-25 image 
+                    input#input-image.form-control(type="file" name="image" accept=".png, .jpg" required)
+                li.input-group 
+                    span.input-group-text.w-25 item name
+                    input#input-name.form-control(type="text" name="name" required)
+                li.input-group 
+                    span.input-group-text.w-25 item prise
+                    input#input-prise.form-control(type="number" name="prise" required)
+                li.input-group 
+                    span.input-group-text.w-25 item amount
+                    input#input-amount.form-control(type="number" name="amount" required)
+            .card-body 
+                button#submit.btn.btn-primary 등록

@@ -1,7 +1,6 @@
 extends ../layout
 
 block libs
-    script(src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous") 
     script(src="/javascripts/register.js") 
 
 block content
@@ -20,5 +19,11 @@ block content
             label.form-label(for="input-reason") 가입 이유
             input#input-reason.form-control(type="text" name="reason")
             .form-text 이 서비스에 가입하게된 이유가 있다면 적어주세요!
+
+        .mb-3
+            .form-check
+                input#check-admin.form-check-input(type="checkbox" name="admin")
+                label.form-check-label(for="check-admin") 관리자 권한
+                .form-text 이 서비스를 관리하기 위해 가입할 경우 체크해 주세요
 
         button.mb-3.btn.btn-primary(type="submit")#submit 회원가입

@@ -1,16 +1,14 @@
 extends ../layout
-block libs
-    script(src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous") 
-    script(src="/javascripts/login.js") 
+
 block content
-    form(onsubmit="return false")
+    form(action="/user/login" method="post") 
         .mb-3
             label.form-label(for="input-id") 아이디
             input#input-id.form-control(type="text" name="id" required)
 
         .mb-3 
             label.form-label(for="input-password") 비밀번호
-            input#input-password.form-control(type="password" name="password" required)
+            input#input-password.form-control(type="password" name="pw" required)
 
         .mb-3.form-check
             input#check-remember.form-check-input(type="checkbox" name="remember")
